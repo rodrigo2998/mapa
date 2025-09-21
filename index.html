@@ -9,17 +9,18 @@
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #1b1b2f, #2e2e4f);
       font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to bottom, #1b1b2f, #2e2e4f);
       color: #fff;
       text-align: center;
       overflow: hidden;
+      transition: background 1s;
     }
 
     h1 {
       margin-top: 20vh;
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.6;
       padding: 0 20px;
       text-shadow: 2px 2px 0 #000;
     }
@@ -42,89 +43,143 @@
       box-shadow: 2px 2px 0px #000;
     }
 
-    .flower {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, #ffeb3b 40%, #fbc02d 100%);
-      border-radius: 50%;
-      box-shadow:
-        -10px -10px 0 #ffeb3b,
-        10px -10px 0 #ffeb3b,
-        -10px 10px 0 #ffeb3b,
-        10px 10px 0 #ffeb3b;
-      opacity: 0;
-      animation: float 6s linear infinite, fadeIn 1s forwards;
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-20vh) rotate(360deg);
-        opacity: 0.6;
-      }
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    /* Ocultar girasoles al inicio */
+    .garden {
+      display: none;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: #ffdde1;
     }
 
     .final-message {
-      display: none;
-      margin-top: 20px;
       font-size: 12px;
-      color: #ffdd00;
-      text-shadow: 2px 2px 0 #000;
+      padding-top: 20px;
+      color: #c2185b;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    /* Girasoles */
+    .sunflower {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 150px;
+    }
+
+    .sunflower .stem {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 20px;
+      height: 200px;
+      background: #388e3c;
+      transform: translateX(-50%);
+    }
+
+    .sunflower .leaf {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: #2e7d32;
+      border-radius: 0 50% 50% 0;
+      top: 60px;
+    }
+
+    .sunflower .leaf.left {
+      left: -40px;
+      transform: rotate(-30deg);
+    }
+
+    .sunflower .leaf.right {
+      right: -40px;
+      transform: rotate(30deg);
+    }
+
+    .sunflower .flower {
+      position: absolute;
+      bottom: 180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #6d4c41;
+      box-shadow: 0 0 0 20px #fdd835, 0 0 0 40px #fbc02d;
+      animation: sway 3s infinite ease-in-out;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+      50% { transform: translateX(-50%) rotate(3deg); }
+    }
+
+    /* Girasoles pequeños */
+    .sunflower.small {
+      width: 80px;
+      height: 80px;
+    }
+
+    .sunflower.small .stem {
+      height: 120px;
+    }
+
+    .sunflower.small .flower {
+      width: 70px;
+      height: 70px;
+      bottom: 110px;
+      box-shadow: 0 0 0 10px #fdd835, 0 0 0 20px #fbc02d;
     }
   </style>
 </head>
 <body>
+  <!-- Pantalla inicial -->
   <h1>Sé que este día se dan flores amarillas a personas importantes,<br>y encabezando la lista siempre irás tú, Andrein 💛</h1>
   <button id="openBtn">Abrir cajita UwU</button>
-  <div class="final-message" id="finalMessage">Una flor para la flor más bonita 🌼</div>
+
+  <!-- Jardín con girasoles -->
+  <div class="garden" id="garden">
+    <div class="final-message">Una flor para la flor más bonita 🌼</div>
+
+    <!-- Girasol central -->
+    <div class="sunflower">
+      <div class="stem"></div>
+      <div class="leaf left"></div>
+      <div class="leaf right"></div>
+      <div class="flower"></div>
+    </div>
+
+    <!-- Girasol izquierdo -->
+    <div class="sunflower small" style="left: 30%; transform: translateX(-50%);">
+      <div class="stem"></div>
+      <div class="leaf left"></div>
+      <div class="leaf right"></div>
+      <div class="flower"></div>
+    </div>
+
+    <!-- Girasol derecho -->
+    <div class="sunflower small" style="left: 70%; transform: translateX(-50%);">
+      <div class="stem"></div>
+      <div class="leaf left"></div>
+      <div class="leaf right"></div>
+      <div class="flower"></div>
+    </div>
+  </div>
 
   <script>
     const btn = document.getElementById("openBtn");
-    const finalMessage = document.getElementById("finalMessage");
+    const garden = document.getElementById("garden");
 
     btn.addEventListener("click", () => {
+      // ocultar mensaje inicial
+      document.querySelector("h1").style.display = "none";
       btn.style.display = "none";
 
-      // generar flores animadas
-      for (let i = 0; i < 50; i++) {
-        const flower = document.createElement("div");
-        flower.classList.add("flower");
-        document.body.appendChild(flower);
-
-        flower.style.left = Math.random() * window.innerWidth + "px";
-        flower.style.top = window.innerHeight + "px";
-        flower.style.animationDuration = (4 + Math.random() * 4) + "s";
-        flower.style.animationDelay = Math.random() * 2 + "s";
-
-        setTimeout(() => flower.remove(), 10000);
-      }
-
-      // mostrar mensaje después
-      setTimeout(() => {
-        finalMessage.style.display = "block";
-      }, 4000);
-
-      // seguir generando flores para animación infinita
-      setInterval(() => {
-        const flower = document.createElement("div");
-        flower.classList.add("flower");
-        document.body.appendChild(flower);
-
-        flower.style.left = Math.random() * window.innerWidth + "px";
-        flower.style.top = window.innerHeight + "px";
-        flower.style.animationDuration = (4 + Math.random() * 4) + "s";
-        flower.style.animationDelay = Math.random() * 2 + "s";
-
-        setTimeout(() => flower.remove(), 10000);
-      }, 600);
+      // cambiar fondo y mostrar jardín
+      document.body.style.background = "#ffdde1";
+      garden.style.display = "block";
     });
   </script>
 </body>
