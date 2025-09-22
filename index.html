@@ -3,72 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌻 Flores amarillas para ti</title>
+  <title>Flores amarillas para Andrein 🌼</title>
   <style>
-    *,
-    *::after,
-    *::before {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --dark-color: #000;
-    }
-
     body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #ffe6f2);
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      background-color: var(--dark-color);
+      flex-direction: column;
       overflow: hidden;
-      perspective: 1000px;
-      font-family: "Poppins", sans-serif;
+      font-family: "Comic Sans MS", "Poppins", cursive;
     }
 
-    .night {
-      position: fixed;
-      left: 50%;
-      top: 0;
-      transform: translateX(-50%);
-      width: 100%;
-      height: 100%;
-      filter: blur(0.1vmin);
-      background-image: radial-gradient(ellipse at top, transparent 0%, var(--dark-color)),
-        radial-gradient(ellipse at bottom, var(--dark-color), rgba(145, 233, 255, 0.2)),
-        repeating-linear-gradient(220deg, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 19px, transparent 19px, transparent 22px),
-        repeating-linear-gradient(189deg, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 19px, transparent 19px, transparent 22px),
-        repeating-linear-gradient(148deg, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 19px, transparent 19px, transparent 22px),
-        linear-gradient(90deg, rgb(21, 255, 0), rgb(240, 240, 240));
-    }
-
-    .flowers {
-      position: relative;
-      transform: scale(0.9);
-    }
-
-    .flower {
-      position: absolute;
-      bottom: 10vmin;
-      transform-origin: bottom center;
-      z-index: 10;
-      --fl-speed: 0.8s;
-    }
-
-    /* Mensaje romántico */
     .message {
-      background: #fce700;
-      bottom: 50px;
       font-size: 28px;
-      font-weight: 800;
-      padding: 12px 18px;
-      border-radius: 12px;
-      position: absolute;
+      font-weight: bold;
+      color: #ff4da6;
+      text-shadow: 2px 2px 4px rgba(255, 192, 203, 0.8);
+      margin-bottom: 40px;
       opacity: 0;
-      animation: fadeIn 2s forwards;
-      animation-delay: 2s;
+      animation: fadeIn 2s ease forwards;
     }
 
     @keyframes fadeIn {
@@ -77,56 +34,78 @@
       }
     }
 
-    /* Aquí va el resto de tu CSS de flores y animaciones */
-    /* ... (lo que me pasaste ya lo incluí completo, no se pierde nada) ... */
+    .flower {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .petal {
+      width: 50px;
+      height: 70px;
+      background: #ffeb3b;
+      border-radius: 50% 50% 50% 50%;
+      position: absolute;
+      top: 15px;
+      left: 25px;
+      transform-origin: bottom center;
+      box-shadow: inset -3px -3px 5px rgba(255, 193, 7, 0.6);
+    }
+
+    .petal:nth-child(1) { transform: rotate(0deg) translateY(-35px); }
+    .petal:nth-child(2) { transform: rotate(45deg) translateY(-35px); }
+    .petal:nth-child(3) { transform: rotate(90deg) translateY(-35px); }
+    .petal:nth-child(4) { transform: rotate(135deg) translateY(-35px); }
+    .petal:nth-child(5) { transform: rotate(180deg) translateY(-35px); }
+    .petal:nth-child(6) { transform: rotate(225deg) translateY(-35px); }
+    .petal:nth-child(7) { transform: rotate(270deg) translateY(-35px); }
+    .petal:nth-child(8) { transform: rotate(315deg) translateY(-35px); }
+
+    .center {
+      width: 50px;
+      height: 50px;
+      background: #8d6e63;
+      border-radius: 50%;
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Varias flores */
+    .flowers-container {
+      display: flex;
+      gap: 40px;
+    }
   </style>
 </head>
 <body>
-  <div class="night"></div>
-  <div class="flowers">
-    <!-- Tus flores animadas -->
-    <div class="flower flower--1">
-      <div class="flower__leafs flower__leafs--1">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
-      </div>
-      <div class="flower__line"></div>
+  <div class="message">🌼 Flores amarillas para la flor más bonita, Andrein 🌸</div>
+
+  <div class="flowers-container">
+    <div class="flower">
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="center"></div>
     </div>
 
-    <div class="flower flower--2">
-      <div class="flower__leafs flower__leafs--2">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
-      </div>
-      <div class="flower__line"></div>
+    <div class="flower" style="animation-delay: 1s;">
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="center"></div>
     </div>
 
-    <div class="flower flower--3">
-      <div class="flower__leafs flower__leafs--3">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
-      </div>
-      <div class="flower__line"></div>
+    <div class="flower" style="animation-delay: 2s;">
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="center"></div>
     </div>
   </div>
-
-  <!-- Mensaje romántico -->
-  <div class="message">🌻 Estas flores amarillas son para ti 🌻</div>
-
-  <script>
-    // Inicia animaciones al cargar
-    onload = () => {
-      document.body.classList.remove("container");
-    };
-  </script>
 </body>
 </html>
