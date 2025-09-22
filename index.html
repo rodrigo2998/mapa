@@ -33,7 +33,7 @@
       to { opacity: 1; }
     }
 
-    /* Flores centrales */
+    /* Flores principales */
     .flowers-container {
       display: flex;
       gap: 60px;
@@ -86,13 +86,13 @@
       50% { transform: translateY(-15px); }
     }
 
-    /* Flores que caen */
+    /* Flores cayendo */
     .falling-flower {
       position: absolute;
       top: -120px;
       width: 80px;
       height: 80px;
-      animation: fall linear infinite, spin 6s linear infinite;
+      animation: fallAndSpin linear infinite;
       z-index: 1;
     }
 
@@ -106,14 +106,15 @@
       height: 30px;
     }
 
-    @keyframes fall {
-      0% { transform: translateY(-100px); opacity: 1; }
-      100% { transform: translateY(110vh); opacity: 0; }
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    @keyframes fallAndSpin {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -142,7 +143,7 @@
     </div>
   </div>
 
-  <!-- Flores que caen -->
+  <!-- Flores cayendo -->
   <script>
     function createFallingFlower(left, duration, delay) {
       let flower = document.createElement("div");
@@ -164,7 +165,7 @@
     }
 
     // Generar varias flores cayendo
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       let left = Math.random() * 100;     // posición horizontal
       let duration = 6 + Math.random() * 6; // velocidad
       let delay = Math.random() * 5;      // retraso
