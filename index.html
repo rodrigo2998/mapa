@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flores amarillas para Andrein 🌼</title>
+  <title>Flores para Andrein 🌼</title>
   <style>
     body {
       margin: 0;
@@ -19,24 +19,29 @@
     }
 
     .message {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: bold;
       color: #ff4da6;
-      text-shadow: 2px 2px 4px rgba(255, 192, 203, 0.8);
+      text-shadow: 2px 2px 5px rgba(255, 192, 203, 0.7);
       margin-bottom: 40px;
+      text-align: center;
       opacity: 0;
       animation: fadeIn 2s ease forwards;
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
+    }
+
+    /* Flores principales */
+    .flowers-container {
+      display: flex;
+      gap: 60px;
     }
 
     .flower {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       position: relative;
       animation: float 3s ease-in-out infinite;
     }
@@ -45,22 +50,22 @@
       width: 50px;
       height: 70px;
       background: #ffeb3b;
-      border-radius: 50% 50% 50% 50%;
+      border-radius: 50%;
       position: absolute;
       top: 15px;
-      left: 25px;
-      transform-origin: bottom center;
-      box-shadow: inset -3px -3px 5px rgba(255, 193, 7, 0.6);
+      left: 35px;
+      transform-origin: center bottom;
+      box-shadow: inset -2px -2px 5px rgba(255, 193, 7, 0.6);
     }
 
-    .petal:nth-child(1) { transform: rotate(0deg) translateY(-35px); }
-    .petal:nth-child(2) { transform: rotate(45deg) translateY(-35px); }
-    .petal:nth-child(3) { transform: rotate(90deg) translateY(-35px); }
-    .petal:nth-child(4) { transform: rotate(135deg) translateY(-35px); }
-    .petal:nth-child(5) { transform: rotate(180deg) translateY(-35px); }
-    .petal:nth-child(6) { transform: rotate(225deg) translateY(-35px); }
-    .petal:nth-child(7) { transform: rotate(270deg) translateY(-35px); }
-    .petal:nth-child(8) { transform: rotate(315deg) translateY(-35px); }
+    .petal:nth-child(1) { transform: rotate(0deg) translateY(-40px); }
+    .petal:nth-child(2) { transform: rotate(45deg) translateY(-40px); }
+    .petal:nth-child(3) { transform: rotate(90deg) translateY(-40px); }
+    .petal:nth-child(4) { transform: rotate(135deg) translateY(-40px); }
+    .petal:nth-child(5) { transform: rotate(180deg) translateY(-40px); }
+    .petal:nth-child(6) { transform: rotate(225deg) translateY(-40px); }
+    .petal:nth-child(7) { transform: rotate(270deg) translateY(-40px); }
+    .petal:nth-child(8) { transform: rotate(315deg) translateY(-40px); }
 
     .center {
       width: 50px;
@@ -68,8 +73,8 @@
       background: #8d6e63;
       border-radius: 50%;
       position: absolute;
-      top: 25px;
-      left: 25px;
+      top: 35px;
+      left: 35px;
       box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
     }
 
@@ -78,16 +83,47 @@
       50% { transform: translateY(-15px); }
     }
 
-    /* Varias flores */
-    .flowers-container {
-      display: flex;
-      gap: 40px;
+    /* Flores que caen */
+    .falling-flower {
+      position: absolute;
+      top: -150px;
+      width: 80px;
+      height: 80px;
+      animation: fall linear infinite, spin 6s linear infinite;
+    }
+
+    .falling-flower .petal {
+      width: 30px;
+      height: 45px;
+      left: 25px;
+      top: 10px;
+    }
+
+    .falling-flower .center {
+      width: 30px;
+      height: 30px;
+      top: 25px;
+      left: 25px;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <div class="message">🌼 Flores amarillas para la flor más bonita, Andrein 🌸</div>
+  <div class="message">
+    🌼 Flores amarillas para la flor más bonita, Andrein 🌸<br>
+    💕 de parte de tu nerdito fav 💕
+  </div>
 
+  <!-- Flores centrales -->
   <div class="flowers-container">
     <div class="flower">
       <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
@@ -95,17 +131,37 @@
       <div class="center"></div>
     </div>
 
-    <div class="flower" style="animation-delay: 1s;">
+    <div class="flower">
       <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
       <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
       <div class="center"></div>
     </div>
 
-    <div class="flower" style="animation-delay: 2s;">
+    <div class="flower">
       <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
       <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
       <div class="center"></div>
     </div>
   </div>
+
+  <!-- Flores que caen -->
+  <div class="falling-flower" style="left:10%; animation-duration: 10s;"></div>
+  <div class="falling-flower" style="left:40%; animation-duration: 12s;"></div>
+  <div class="falling-flower" style="left:70%; animation-duration: 14s;"></div>
+  <div class="falling-flower" style="left:85%; animation-duration: 16s;"></div>
+
+  <script>
+    // Generar flores cayendo
+    document.querySelectorAll(".falling-flower").forEach(flower => {
+      for (let i = 0; i < 8; i++) {
+        let petal = document.createElement("div");
+        petal.classList.add("petal");
+        flower.appendChild(petal);
+      }
+      let center = document.createElement("div");
+      center.classList.add("center");
+      flower.appendChild(center);
+    });
+  </script>
 </body>
 </html>
