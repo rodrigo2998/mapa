@@ -3,184 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flores Amarillas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>🌻 Para Andrein</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(to bottom, #1b1b2f, #2e2e4f);
-      color: #fff;
-      text-align: center;
+      background: #fff9c4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       overflow: hidden;
-      transition: background 1s;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      text-align: center;
     }
 
     h1 {
-      margin-top: 20vh;
-      font-size: 14px;
-      line-height: 1.6;
-      padding: 0 20px;
-      text-shadow: 2px 2px 0 #000;
+      font-size: 28px;
+      color: #333;
+      margin: 20px;
+      opacity: 0;
+      animation: fadeIn 3s forwards;
     }
 
-    button {
-      margin-top: 30px;
-      padding: 15px 25px;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 12px;
-      color: #1e1e2f;
-      background: #ffdd00;
-      border: 3px solid #fff;
-      cursor: pointer;
-      box-shadow: 4px 4px 0px #000;
-      transition: transform 0.2s, box-shadow 0.2s;
+    p {
+      font-size: 20px;
+      color: #d81b60;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeIn 3s forwards;
+      animation-delay: 2s;
     }
 
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 2px 2px 0px #000;
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
-    /* Ocultar girasoles al inicio */
-    .garden {
-      display: none;
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      background: #ffdde1;
-    }
-
-    .final-message {
-      font-size: 12px;
-      padding-top: 20px;
-      color: #c2185b;
-      text-shadow: 1px 1px 0 #fff;
-    }
-
-    /* Girasoles */
-    .sunflower {
+    /* Flor básica en CSS */
+    .flower {
       position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 150px;
-      height: 150px;
-    }
-
-    .sunflower .stem {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 20px;
-      height: 200px;
-      background: #388e3c;
-      transform: translateX(-50%);
-    }
-
-    .sunflower .leaf {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background: #2e7d32;
-      border-radius: 0 50% 50% 0;
-      top: 60px;
-    }
-
-    .sunflower .leaf.left {
-      left: -40px;
-      transform: rotate(-30deg);
-    }
-
-    .sunflower .leaf.right {
-      right: -40px;
-      transform: rotate(30deg);
-    }
-
-    .sunflower .flower {
-      position: absolute;
-      bottom: 180px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 120px;
+      width: 60px;
+      height: 60px;
+      background: #fdd835;
       border-radius: 50%;
-      background: #6d4c41;
-      box-shadow: 0 0 0 20px #fdd835, 0 0 0 40px #fbc02d;
-      animation: sway 3s infinite ease-in-out;
+      border: 8px solid #ffeb3b;
+      box-shadow: inset 0 0 10px #fbc02d;
+      animation: fall linear forwards;
     }
 
-    @keyframes sway {
-      0%, 100% { transform: translateX(-50%) rotate(-3deg); }
-      50% { transform: translateX(-50%) rotate(3deg); }
+    .flower::before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 30px;
+      height: 30px;
+      background: #4e342e;
+      border-radius: 50%;
     }
 
-    /* Girasoles pequeños */
-    .sunflower.small {
-      width: 80px;
-      height: 80px;
-    }
-
-    .sunflower.small .stem {
-      height: 120px;
-    }
-
-    .sunflower.small .flower {
-      width: 70px;
-      height: 70px;
-      bottom: 110px;
-      box-shadow: 0 0 0 10px #fdd835, 0 0 0 20px #fbc02d;
+    /* Animación de caída */
+    @keyframes fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Pantalla inicial -->
-  <h1>Sé que este día se dan flores amarillas a personas importantes,<br>y encabezando la lista siempre irás tú, Andrein 💛</h1>
-  <button id="openBtn">Abrir cajita UwU</button>
-
-  <!-- Jardín con girasoles -->
-  <div class="garden" id="garden">
-    <div class="final-message">Una flor para la flor más bonita 🌼</div>
-
-    <!-- Girasol central -->
-    <div class="sunflower">
-      <div class="stem"></div>
-      <div class="leaf left"></div>
-      <div class="leaf right"></div>
-      <div class="flower"></div>
-    </div>
-
-    <!-- Girasol izquierdo -->
-    <div class="sunflower small" style="left: 30%; transform: translateX(-50%);">
-      <div class="stem"></div>
-      <div class="leaf left"></div>
-      <div class="leaf right"></div>
-      <div class="flower"></div>
-    </div>
-
-    <!-- Girasol derecho -->
-    <div class="sunflower small" style="left: 70%; transform: translateX(-50%);">
-      <div class="stem"></div>
-      <div class="leaf left"></div>
-      <div class="leaf right"></div>
-      <div class="flower"></div>
-    </div>
-  </div>
+  <h1>Una flor para la flor más linda, Andrein 💛</h1>
+  <p>Feliz 21 de septiembre 🌼 Con mucho cariño</p>
 
   <script>
-    const btn = document.getElementById("openBtn");
-    const garden = document.getElementById("garden");
+    function crearFlor() {
+      const flor = document.createElement("div");
+      flor.classList.add("flower");
+      flor.style.left = Math.random() * window.innerWidth + "px";
+      flor.style.animationDuration = (3 + Math.random() * 5) + "s";
+      document.body.appendChild(flor);
 
-    btn.addEventListener("click", () => {
-      // ocultar mensaje inicial
-      document.querySelector("h1").style.display = "none";
-      btn.style.display = "none";
+      setTimeout(() => {
+        flor.remove();
+      }, 8000);
+    }
 
-      // cambiar fondo y mostrar jardín
-      document.body.style.background = "#ffdde1";
-      garden.style.display = "block";
-    });
+    // Crear flores después de 3 segundos
+    setTimeout(() => {
+      setInterval(crearFlor, 700);
+    }, 3000);
   </script>
 </body>
 </html>
